@@ -17,3 +17,6 @@ ${Date.now()}: ${req.url} New Req Recieved
 1770315836263: /about New Req Recieved
 1770315933526: /about New Req Recieved
 1770315984135: /about?name=kshitij New Req Recieved
+1770316781034: GET /about?name=kshitij New Req Recieved
+1770316793371: GET /about New Req Recieved
+1770317159545: GET /signup New Req Recieved
