@@ -1,8 +1,16 @@
 const http = require("http");
 const fs = require("fs");
 const url = require("url");
-const myServer = http.createServer((req,res) => {
-    if(req.url === "/favicon.ico"){
+const express = require("express");
+
+const app = express();
+app.get('/',(req,res) => res.send("Home Page"));
+app.get('/about',(req,res) => {
+    return res.send("About Page");
+});
+
+function myHandler(req,res){
+if(req.url === "/favicon.ico"){
         res.end();
         return;
     } 
@@ -27,7 +35,9 @@ const myServer = http.createServer((req,res) => {
             res.end("404 Page Not Found");
         }
     });
-});
+}
+const myServer = http.createServer(app);
+    
 //     fs.appendFile("log.txt",log,(err,data)=>{
 //         switch(myUrl.pathname){
 //             case '/':
