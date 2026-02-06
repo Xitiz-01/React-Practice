@@ -1,4 +1,4 @@
-const http = require("http");
+
 const fs = require("fs");
 const url = require("url");
 const express = require("express");
@@ -9,34 +9,7 @@ app.get('/about',(req,res) => {
     return res.send("About Page");
 });
 
-function myHandler(req,res){
-if(req.url === "/favicon.ico"){
-        res.end();
-        return;
-    } 
-    const log = `${Date.now()}: ${req.method} ${req.url} New Req Recieved\n`
-    const myUrl = url.parse(req.url,true);
-    console.log(myUrl);
-    fs.appendFile("log.txt",log,(err,data)=> {
-        switch(myUrl.pathname){
-        case '/':
-           if(req.method === 'GET') res.end("HOMEPage");
-            break;
-        case '/about':
-            const username = myUrl.query.name;
-            res.end(`Hi, ${username}`);
-            break;
-            case '/signup':
-            if(req.method === 'GET') res.end("This is a signup form"); 
-            else if(req.method === 'POST') 
-                //DB Query
-                res.end("Success");    
-        default:
-            res.end("404 Page Not Found");
-        }
-    });
-}
-const myServer = http.createServer(app);
+app.listen(8000,() => console.log("Server is running on port 8000"));
     
 //     fs.appendFile("log.txt",log,(err,data)=>{
 //         switch(myUrl.pathname){
@@ -50,5 +23,4 @@ const myServer = http.createServer(app);
 //                 res.end("404 Page Not Found");
 //         }
 //     });
-// });
-            myServer.listen(8000,() =>console.log("Server Started"));           
+// });        
